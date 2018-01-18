@@ -9,7 +9,7 @@ Made for Zambez-AI
 from openpyxl import load_workbook
 from fuzzywuzzy import fuzz
 
-def SpellFinder(bot):
+def SpellFinder(bot=None):
     @bot.command(pass_context=True)
     async def spell(ctx, spellName=None):   
         spellName = spellName.replace('_', ' ')
@@ -32,25 +32,13 @@ def SpellFinder(bot):
                 fuzzDict = [fuzzMatch, name]
                 possibleMatches.append(fuzzDict)
         
-        for thingy in possibleMatches:
-            if thingy[0] > possibleMatches[0][0]:
-                possibleMatches.remove(thingy)
-                possibleMatches.insert(0, thingy)
-                
-        for thingy in possibleMatches[1:]:
-            if thingy[0] > possibleMatches[1][0]:
-                possibleMatches.remove(thingy)
-                possibleMatches.insert(1, thingy)
-                
-        for thingy in possibleMatches[2:]:
-            if thingy[0] > possibleMatches[2][0]:
-                possibleMatches.remove(thingy)
-                possibleMatches.insert(2, thingy)
-                
-        for thingy in possibleMatches[3:]:
-            if thingy[0] > possibleMatches[3][0]:
-                possibleMatches.remove(thingy)
-                possibleMatches.insert(3, thingy)
+        loopCycle = 0
+        while loopCycle <= 3:
+            for thingy in possibleMatches[loopCycle:]:
+                if thingy[0] > possibleMatches[loopCycle][0]:
+                    possibleMatches.remove(thingy)
+                    possibleMatches.insert(loopCycle, thingy)
+            loopCycle += 1
         
         if spellName not in spellNames:
                 if len(possibleMatches) > 4:
@@ -155,4 +143,6 @@ def SpellFinder(bot):
                                 )
                                 
                 return
+
+    
                     
