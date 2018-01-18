@@ -9,6 +9,7 @@ Made for Zambez-AI
 from discord.ext import commands
 from botApps.Info import Info
 from botApps.MonsterFinder import Monster
+from botApps.SpellFinder import SpellFinder
 from botApps.Dice import Dice
 from botApps.Thanks import Thanks
 
@@ -30,12 +31,13 @@ async def commandlist(ctx):
     await bot.say("info [insert username]: Gives users basic information\n" +
                   "dice [number of sides (default=6 min=2 max=9999)] [number of die(default=1 max=4)]: Rolls dice and totals result\n" +
                   "monster [Name(use '_' in place of space)]: Returns DnD Monster info" +
+                  "spell [Name(use '_' in place of space)]: Returns DnD Spell info" +
                   "thanks: Gives thanks for my work :)")
     
 Info(bot)
 Dice(bot)        
 Monster(bot)
+SpellFinder(bot)
 Thanks(bot)
-
     
 bot.run(text)
