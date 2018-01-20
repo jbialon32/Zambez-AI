@@ -30,8 +30,8 @@ async def on_ready():
 async def commandlist(ctx):
     await bot.say("info [insert username]: Gives users basic information\n" +
                   "dice [number of sides (default=6 min=2 max=9999)] [number of die(default=1 max=4)]: Rolls dice and totals result\n" +
-                  "monster [Name(use '_' in place of space)]: Returns DnD Monster info" +
-                  "spell [Name(use '_' in place of space)]: Returns DnD Spell info" +
+                  "monster [Name(use '_' in place of space)]: Returns DnD Monster info\n" +
+                  "spell [Name(use '_' in place of space)]: Returns DnD Spell info\n" +
                   "thanks: Gives thanks for my work :)")
     
 Info(bot)
