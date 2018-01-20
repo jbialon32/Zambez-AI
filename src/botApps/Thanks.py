@@ -10,7 +10,7 @@ def Thanks(bot):
     @bot.command(pass_context=True)
     async def thanks(ctx):
         thanksFile = open("data/numThanks.txt", "r")
-        numThanks = int(thanksFile.readline(1))
+        numThanks = int(thanksFile.readline())
         thanksFile.close()
         
         numThanks += 1
