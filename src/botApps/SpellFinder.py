@@ -124,8 +124,9 @@ def SpellFinder(bot=None):
                 
                 action = action.title()
                 
-                try:
-                    if action == 'Cast':
+                
+                if action == 'Cast':
+                    try:
                         diceInfo = spellDmgHeal.split()
                         diceInfo = str(diceInfo[1])
                         betterInfo = []
@@ -141,12 +142,12 @@ def SpellFinder(bot=None):
                         roll = proDice(numSides, numDice)
                         await bot.say("{} casts {} on {} for {} damage!".format(ctx.message.author.mention, name, target.mention, roll))
                 
-                except:
-                    await bot.say("Please use proper syntax.\n" +
-                                  'spell [name] cast [user (ex: billbob#1244)]\n' +
-                                  '\nOr use spell [name] to find a spell\n' +
-                                  'and make sure it deals damage.'
-                                  )
+                    except:
+                        await bot.say("Please use proper syntax.\n" +
+                                      'spell [name] cast [user (ex: billbob#1244)]\n' +
+                                      '\nOr use spell [name] to find a spell\n' +
+                                      'and make sure it deals damage.'
+                                      )
                     
                 
                 if action == None:
