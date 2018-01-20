@@ -15,7 +15,7 @@ def Monster(bot):
         
         monsterName = monsterName.replace('_', ' ')
         monsterName = monsterName.capitalize()
-                """
+        """
         
         --------------------------------------------------------
         ONLY TO BE USED AS A COMPANION TO THE OFFICIAL 5e BOOKS!
