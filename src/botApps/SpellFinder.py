@@ -18,6 +18,22 @@ def SpellFinder(bot=None):
     async def spell(ctx, spellName=None, action=None, target: discord.Member=None):
         spellName = spellName.replace('_', ' ')
         spellName = spellName.title()
+        """
+        
+        --------------------------------------------------------
+        ONLY TO BE USED AS A COMPANION TO THE OFFICIAL 5e BOOKS!
+        --------------------------------------------------------
+        
+        #################
+        BIG THANKS TOO
+        Zolo49
+        #################
+        
+        ================================================================================
+        https://www.reddit.com/r/DnD/comments/2qs89e/5e_spell_reference_sheets_are_done/
+        ================================================================================
+        
+        """
         spellBook = load_workbook(filename='5E Spells.xlsx')
         spellSheet = spellBook['Master Table']
         colA = spellSheet['A']

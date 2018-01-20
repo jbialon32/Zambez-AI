@@ -15,6 +15,22 @@ def Monster(bot):
         
         monsterName = monsterName.replace('_', ' ')
         monsterName = monsterName.capitalize()
+                """
+        
+        --------------------------------------------------------
+        ONLY TO BE USED AS A COMPANION TO THE OFFICIAL 5e BOOKS!
+        --------------------------------------------------------
+        
+        #################
+        BIG THANKS TOO
+        Mouseferatu
+        #################
+        
+        ======================================================================================
+        http://www.enworld.org/forum/showthread.php?358465-Another-gift-The-5E-Monster-Sorter!
+        ======================================================================================
+        
+        """
         monsterBook = load_workbook(filename='Aris-5e-Monster-Sorter.xlsx')
         monsterSheet = monsterBook['Sheet1']
         colA = monsterSheet['A']
