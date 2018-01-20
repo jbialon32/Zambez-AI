@@ -6,12 +6,16 @@ Made for Zambez-AI
 @author: Kalerne aka dBasshunterb
 '''
 
+import discord
 from openpyxl import load_workbook
 from fuzzywuzzy import fuzz
+from botApps.Dice import proDice
 
+    
 def SpellFinder(bot=None):
+        
     @bot.command(pass_context=True)
-    async def spell(ctx, spellName=None):   
+    async def spell(ctx, spellName=None, action=None, target: discord.Member=None):
         spellName = spellName.replace('_', ' ')
         spellName = spellName.title()
         spellBook = load_workbook(filename='5E Spells.xlsx')
@@ -117,32 +121,61 @@ def SpellFinder(bot=None):
                     
                 if spellMaterial == None:
                     spellMaterial = 'No'
+                
+                action = action.title()
+                
+                try:
+                    if action == 'Cast':
+                        diceInfo = spellDmgHeal.split()
+                        diceInfo = str(diceInfo[1])
+                        betterInfo = []
+                        for char in diceInfo:
+                            betterInfo.append(char)
+                        numDice = int(betterInfo[0])
+                        if len(diceInfo) > 3:
+                            numSides = str(betterInfo[2]) + str(betterInfo[3])
+                            numSides = int(betterInfo[2]) + int(betterInfo[3])
+                        else:
+                            numSides = str(betterInfo[2])
+                            numSides = int(betterInfo[2]) 
+                        roll = proDice(numSides, numDice)
+                        await bot.say("{} casts {} on {} for {} damage!".format(ctx.message.author.mention, name, target.mention, roll))
+                
+                except:
+                    await bot.say("Please use proper syntax.\n" +
+                                  'spell [name] cast [user (ex: billbob#1244)]\n' +
+                                  '\nOr use spell [name] to find a spell\n' +
+                                  'and make sure it deals damage.'
+                                  )
                     
-                await bot.say("Spell Name:    {}\n".format(name) +
-                                "Level Req:    {}\n".format(spellLevel) +
-                                "School:    {}\n".format(spellSchool) +
-                                "Ritual:    {}\n".format(spellRitual) +
-                                "Cast Time:    {}\n".format(castTime) +
-                                "Range:    {}\n".format(spellRange) +
-                                "Target/Area:    {}\n".format(spellTargets) +
-                                "Verbal:    {}\n".format(spellVerbal) +
-                                "Somatic:    {}\n".format(spellSomatic) +
-                                "Material:    {}\n".format(spellMaterial) +
-                                "Components:    {}\n".format(spellComponents) +
-                                "Cost:    {}\n".format(spellCost) +
-                                "Concentration:    {}\n".format(spellConcentration) +
-                                "Duration:    {}\n".format(spellDuration) +
-                                "Attack/Saving Throw:    {}\n".format(spellAtkSave) +
-                                "Damage Type:    {}\n".format(spellDamageType) +
-                                "Dmg/Heal:    {}\n".format(spellDmgHeal) +
-                                "Source Book:    {}\n".format(spellSourceBook) +
-                                "Source Page:    {}\n".format(spellSourcePage) +
-                                "Detail:    {}\n".format(spellDetail) +
-                                "Level Bonus:    {}\n".format(spellLevelBoost) +
-                                "Classes:    {}".format((', ').join(spellClasses))
-                                )
-                                
-                return
+                
+                if action == None:
+                        
+                    await bot.say("Spell Name:    {}\n".format(name) +
+                                    "Level Req:    {}\n".format(spellLevel) +
+                                    "School:    {}\n".format(spellSchool) +
+                                    "Ritual:    {}\n".format(spellRitual) +
+                                    "Cast Time:    {}\n".format(castTime) +
+                                    "Range:    {}\n".format(spellRange) +
+                                    "Target/Area:    {}\n".format(spellTargets) +
+                                    "Verbal:    {}\n".format(spellVerbal) +
+                                    "Somatic:    {}\n".format(spellSomatic) +
+                                    "Material:    {}\n".format(spellMaterial) +
+                                    "Components:    {}\n".format(spellComponents) +
+                                    "Cost:    {}\n".format(spellCost) +
+                                    "Concentration:    {}\n".format(spellConcentration) +
+                                    "Duration:    {}\n".format(spellDuration) +
+                                    "Attack/Saving Throw:    {}\n".format(spellAtkSave) +
+                                    "Damage Type:    {}\n".format(spellDamageType) +
+                                    "Dmg/Heal:    {}\n".format(spellDmgHeal) +
+                                    "Source Book:    {}\n".format(spellSourceBook) +
+                                    "Source Page:    {}\n".format(spellSourcePage) +
+                                    "Detail:    {}\n".format(spellDetail) +
+                                    "Level Bonus:    {}\n".format(spellLevelBoost) +
+                                    "Classes:    {}".format((', ').join(spellClasses))
+                                    )
+                                    
+                    return
 
     
                     

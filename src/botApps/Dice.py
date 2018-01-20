@@ -8,6 +8,22 @@ Made for Zambez-AI
 from random import randint
 from builtins import sum
 
+def proDice(numSides=6, numDice=1):
+        try:
+            rolls = []
+        
+            while numDice > 0:
+                d20 = randint(1, numSides)
+                rolls.append(d20)
+                numDice -= 1
+            
+            totalRoll = sum(rolls)    
+            
+            return totalRoll
+        
+        except:
+            None
+
 def Dice(bot):
     @bot.command(pass_context=True)
     async def dice(ctx, numSides=6, numDice=1):
@@ -51,3 +67,4 @@ def Dice(bot):
         except:
             await bot.say("Please use the correct syntax")
             await bot.say('"#dice (INTEGER NUMBER) (INTEGER NUMBER"')
+            
